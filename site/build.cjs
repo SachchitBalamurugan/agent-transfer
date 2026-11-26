@@ -7,7 +7,7 @@ const out = path.join(root, 'dist');
 const files = [
  'agent-transfer.cjs','package.json','README.md','LICENSE','test.cjs','skills/agent-transfer/SKILL.md',
  'site/index.html','site/departure.css','site/terminal.webp','site/build.cjs','package-lock.json','site/launch.mp4','vercel.json','.gitignore','ci/github-actions.yml',
- 'launch/scene.cjs','launch/gif.cjs','launch/render.cjs','launch/voice.cjs','launch/script.txt','launch/test.cjs'
+ 'site/render-terminal.py','launch/claude.svg','launch/scene.cjs','launch/gif.cjs','launch/render.cjs','launch/voice.cjs','launch/script.txt','launch/test.cjs'
 ];
 function crc32(data) {
  let crc = -1;
