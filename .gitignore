@@ -1,8 +1,5 @@
 node_modules/
 dist/
-launch/private/
 .vercel/
-*.agentpack
-
-.vercel
 .env*
+*.agentpack

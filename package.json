@@ -7,11 +7,7 @@
     "agent-transfer": "agent-transfer.cjs"
   },
   "scripts": {
-    "test": "node --test test.cjs launch/test.cjs",
-    "build": "node site/build.cjs",
-    "film": "node launch/render.cjs --mp4",
-    "voice": "node launch/voice.cjs",
-    "film:voice": "node launch/render.cjs --mp4 --voice"
+    "test": "node --test test.cjs"
   },
   "engines": {
     "node": ">=20"
