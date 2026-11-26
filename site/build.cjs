@@ -6,7 +6,7 @@ const root = path.join(__dirname, '..');
 const out = path.join(root, 'dist');
 const files = [
  'agent-transfer.cjs','package.json','README.md','LICENSE','test.cjs','skills/agent-transfer/SKILL.md',
- 'site/index.html','site/build.cjs','package-lock.json','site/launch.mp4','vercel.json','.gitignore','ci/github-actions.yml',
+ 'site/index.html','site/departure.css','site/terminal.webp','site/build.cjs','package-lock.json','site/launch.mp4','vercel.json','.gitignore','ci/github-actions.yml',
  'launch/scene.cjs','launch/gif.cjs','launch/render.cjs','launch/voice.cjs','launch/script.txt','launch/test.cjs'
 ];
 function crc32(data) {
@@ -20,7 +20,12 @@ function crc32(data) {
 function zip(files) {
  const chunks=[], central=[];let offset=0;
  for (const file of files) {
-  const name=Buffer.from(file),data=fs.readFileSync(path.join(root,file));
+  const filePath = path.join(root,file);
+  // Vercel omits .gitignore when the CLI uploads a deployment.
+  const data = file === '.gitignore' && !fs.existsSync(filePath)
+    ? Buffer.from('node_modules/\ndist/\nlaunch/private/\n.vercel/\n.env*\n*.agentpack\n')
+    : fs.readFileSync(filePath);
+  const name=Buffer.from(file);
   const header=Buffer.alloc(30);header.writeUInt32LE(0x04034b50);header.writeUInt16LE(20,4);header.writeUInt16LE(33,12);
   header.writeUInt32LE(crc32(data),14);header.writeUInt32LE(data.length,18);header.writeUInt32LE(data.length,22);header.writeUInt16LE(name.length,26);
   const entry=Buffer.alloc(46);entry.writeUInt32LE(0x02014b50);entry.writeUInt16LE(0x314,4);header.copy(entry,6,4,30);
@@ -36,3 +41,5 @@ fs.copyFileSync(path.join(root,'site/index.html'),path.join(out,'index.html'));
 fs.copyFileSync(path.join(root,'site/launch.mp4'),path.join(out,'launch.mp4'));
 fs.writeFileSync(path.join(out,'agent-transfer.zip'),zip(files));
 execFileSync(process.execPath,[path.join(root,'launch/render.cjs')],{cwd:root,stdio:'inherit'});
+
+for(const asset of ['departure.css','terminal.webp']) fs.copyFileSync(path.join(root,'site',asset),path.join(out,asset));

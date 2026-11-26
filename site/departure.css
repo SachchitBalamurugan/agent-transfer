@@ -1,0 +1,31 @@
+body { overflow-x: clip }
+header {
+  position: absolute; inset: 0 0 auto; z-index: 2; width: 100%; color: #fff8ea;
+  border-color: #ffffff40; text-shadow: 0 1px 8px #18170e;
+}
+header .bars { color: #ffc284 }
+.hero {
+  position: relative; isolation: isolate; width: 100vw; margin-left: calc(50% - 50vw);
+  padding: clamp(132px,18vh,190px) max(7vw,calc((100vw - 1090px)/2)) clamp(90px,14vh,170px);
+  min-height: 89svh; color: #fff9ea; display: flex; align-items: center;
+  background: #384037 url('./terminal.webp') center 58% / cover no-repeat;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(90deg,#131f1bef 0%,#1b2420d6 21%,#242921a3 42%,#27271c14 76%),
+              linear-gradient(180deg,#211e196b,transparent 23%,transparent 79%,#171c1766);
+}
+.hero .route { color: #ffcf9c }
+.hero h1 { font-size: clamp(70px,7.5vw,124px); letter-spacing: -.075em; margin: .24em 0 }
+.hero h1 em { color: #f4d3a5; font-weight: normal }
+.hero p { max-width: 395px; color: #fffbef; line-height: 1.55 }
+.hero .primary { background: #f5ead4; color: #192b22 }
+.hero .play { color: #fffaea }
+@media(max-width:760px) {
+  .hero { min-height: 770px; min-height: min(840px,95svh); padding: 135px 6vw 55px;
+          background-position: 65% center; align-items: flex-end }
+  .hero::before { background: linear-gradient(0deg,#15231cf5 3%,#172520dc 34%,#24282038 75%,#15231ca6) }
+  .hero h1 { font-size: clamp(60px,14vw,90px) }
+  .hero p { font-size: 16px; max-width: 340px }
+  header { height: 64px }
+}
