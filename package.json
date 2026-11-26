@@ -1,0 +1,24 @@
+{
+  "name": "local-agent-transfer",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Transfer local Claude Code and Codex setups",
+  "bin": {
+    "agent-transfer": "agent-transfer.cjs"
+  },
+  "scripts": {
+    "test": "node --test test.cjs launch/test.cjs",
+    "build": "node site/build.cjs",
+    "film": "node launch/render.cjs --mp4",
+    "voice": "node launch/voice.cjs",
+    "film:voice": "node launch/render.cjs --mp4 --voice"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "smol-toml": "^1.4.0",
+    "yaml": "^2.7.0"
+  },
+  "license": "MIT"
+}
